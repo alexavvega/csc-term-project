@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #3a3537;
+    color: white;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav li {
+    margin-left: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    background-color: #666;
+    padding: 8px 16px;
+}
+
+nav a:hover {
+    background-color: #888;
+}
+
+.search-box {
+    display: flex;
+    margin-left: 20px;
+}
+
+.search-box input {
+    padding: 8px;
+    width: 300px;
+    border: none;
+    background-color: #e9e9e9;
+    font-size: 1rem;
+}
+
+.search-box button {
+    padding: 8px 16px;
+    background-color: #666;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.hero {
+    background-color: #666;
+    color: white;
+    padding: 60px 10%;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cta-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button.red {
+    background-color: #e57373;
+}
+
+.cta-button.green {
+    background-color: #81c784;
+}
+
+.section-title {
+    background-color: #ddd;
+    padding: 15px 10%;
+    font-size: 1.5rem;
+}
+
+.game-grid {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10%;
+    flex-wrap: wrap;
+}
+
+.game-card {
+    width: 22%;
+    margin-bottom: 30px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.game-image {
+    width: 100%;
+    height: 200px;
+    background-color: #e0e0e0;
+}
+
+.game-info {
+    padding: 15px;
+}
+
+.game-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.game-price {
+    color: #4caf50;
+    font-weight: bold;
+}
