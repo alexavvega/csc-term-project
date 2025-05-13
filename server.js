@@ -1,36 +1,49 @@
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
-const mongoose = require('mongoose');
-require('dotenv').config();
-
-const gamesRoutes = require('./routes/games');
-const userRoutes = require('./routes/users');
-const cartRoutes = require('./routes/cart');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 3000;
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.error('MongoDB connection error:', err));
+// Middleware
+app.use(express.urlencoded({ extended: true })); // for form data
+app.use(session({
+  secret: 'keyboard cat', // Change in production!
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true only with HTTPS
+}));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static HTML files
+app.use(express.static(path.join(__dirname, 'views')));
 
-app.use('/api/games', gamesRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/cart', cartRoutes);
+// Routes
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'views/home.html')));
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'views/login.html')));
+
+app.post('/login', (req, res) => {
+  const username = req.body.username;
+  if (username) {
+    req.session.username = username;
+    res.redirect('/secret');
+  } else {
+    res.send('Please enter a username');
+  }
+});
+
+app.get('/secret', (req, res) => {
+  if (req.session.username) {
+    res.sendFile(path.join(__dirname, 'views/secret.html'));
+  } else {
+    res.redirect('/login');
+  }
+});
+
+app.post('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/');
   });
-}
+});
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
