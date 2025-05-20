@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Games - Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        body {
+            background-color: #fff;
+            color: #333;
+        }
+        
+        header {
+            background-color: #3c3836;
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            margin-left: 100px;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-menu {
+            margin-right: 30px;
+        }
+        
+        .nav-button {
+            background-color: #666;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .nav-button:hover {
+            background-color: #888;
+        }
+        
+        main {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .sidebar {
+            width: 250px;
+        }
+        
+        .sidebar-item {
+            background-color: #ddd;
+            padding: 20px;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .sidebar-item:hover {
+            background-color: #ccc;
+        }
+        
+        .profile-section {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 30px;
+        }
+        
+        .profile-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .profile-pic-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .add-pic-text {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .add-pic-text:hover {
+            color: #666;
+        }
+        
+        .sign-out-btn {
+            background-color: #f05555;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .sign-out-btn:hover {
+            background-color: #e03535;
+        }
+        
+        .genres-section {
+            width: 350px;
+            background-color: #3c3836;
+            color: white;
+            padding: 20px;
+        }
+        
+        .genres-title {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .genres-heading {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .genre-item {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .genre-item:hover {
+            color: #aaa;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Vintage Games</div>
+        <div class="nav-menu">
+            <a href="blank.html"><button class="nav-button">Home</button></a> <!-- these links are all blank, please go over the links and fill them to the needed webpage-->
+            <a href="blank.html"><button class="nav-button">Browse</button></a> <!-- Or leave these links blank-->
+            <a href="blank.html"><button class="nav-button">About</button></a>
+            <a href="blank.html"><button class="nav-button">FAQ</button></a>
+            <a href="blank.html"><button class="nav-button">Login</button></a>
+            <a href="blank.html"><button class="nav-button">Cart 0</button></a>
+        </div>
+    </header>
+    
+    <main>
+        <div class="sidebar">
+            <a href="blank.html"><div class="sidebar-item">Settings</div></a>
+            <a href="blank.html"><div class="sidebar-item">Account</div></a>
+            <a href="blank.html"><div class="sidebar-item">Support</div></a>
+            <a href="blank.html"><div class="sidebar-item">Payments</div></a>
+            <a href="blank.html"><div class="sidebar-item">Wishlist</div></a>
+        </div>
+        
+        <div class="profile-section">
+            <h1 class="profile-title">Profile Picture</h1>
+            <div class="profile-pic-container" id="profilePic"></div>
+            <div class="add-pic-text" id="addPicText">Add Profile Pic</div>
+            <a href="blank.html"><button class="sign-out-btn">Sign Out</button></a>
+        </div>
+        
+        <div class="genres-section">
+            <h3 class="genres-title">Shop by</h3>
+            <h2 class="genres-heading">Genres</h2>
+            <a href="blank.html"><div class="genre-item">Action Adventure</div></a>
+            <a href="blank.html"><div class="genre-item">Puzzle</div></a>
+            <a href="blank.html"><div class="genre-item">2D side scroller</div></a>
+            <a href="blank.html"><div class="genre-item">3D Platformer</div></a>
+            <a href="blank.html"><div class="genre-item">Horror</div></a>
+        </div>
+    </main>
+
+    <script>
+        // Add profile picture functionality
+        document.getElementById('addPicText').addEventListener('click', function() {
+            // In a real application, you would trigger a file upload dialog here
+            alert('Profile picture upload functionality would be implemented here.');
+        });
+        
+        // Create blank page for links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create a blank HTML file if it doesn't exist
+            // This won't actually create a file in the browser, but simulates the functionality
+            console.log('All links will lead to a blank page (blank.html)');
+        });
+    </script>
+</body>
+</html>
