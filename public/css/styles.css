@@ -83,7 +83,6 @@ nav a:hover {
     cursor: pointer;
 }
 
-/* Hero Section */
 .hero {
     background-color: #3a3537;
     color: white;
@@ -126,20 +125,31 @@ nav a:hover {
     font-size: 1.5rem;
 }
 
+.game-grid a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+
 /* Game Grid */
 .game-grid {
     display: flex;
-    justify-content: space-between;
-    padding: 20px 10%;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    justify-content: center;
+    gap: 24px;
+    padding: 20px 10%;
 }
 
+
 .game-card {
-    width: 22%;
-    margin-bottom: 30px;
+    width: 220px;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.3s;
+    text-decoration: none;
+    color: inherit;
 }
 
 .game-card:hover {
@@ -150,10 +160,10 @@ nav a:hover {
     width: 100%;
     height: 200px;
     background-color: #e0e0e0;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .game-image img {
@@ -493,8 +503,14 @@ footer {
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
     .game-card {
-        width: 30%;
-    }
+    width: 22%;
+    background-color: white;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    text-decoration: none;
+    color: inherit;
+}
     
     .profile-content {
         flex-direction: column;

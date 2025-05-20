@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login - Vintage Games</title>
+  <title>Register - Vintage Games</title>
   <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
@@ -22,9 +22,14 @@
         </div>
     </header>
 
+
   <div class="container">
-    <h1>Login</h1>
-    <form method="POST" action="/auth/login">
+    <h1>Register</h1>
+    <form method="POST" action="/auth/register">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" required>
+      </div>
       <div class="form-group">
         <label>Email</label>
         <input type="email" name="email" required>
@@ -33,9 +38,9 @@
         <label>Password</label>
         <input type="password" name="password" required>
       </div>
-      <button type="submit">Login</button>
+      <button type="submit">Register</button>
     </form>
-    <p>Don't have an account? <a href="/register">Register here</a></p>
+    <p>Already have an account? <a href="/login">Login here</a></p>
   </div>
 </body>
 </html>
