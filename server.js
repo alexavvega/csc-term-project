@@ -5,45 +5,31 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-// Middleware
-app.use(express.urlencoded({ extended: true })); // for form data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(session({
-  secret: 'keyboard cat', // Change in production!
+  secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Set to true only with HTTPS
+  cookie: { secure: false }
 }));
 
-// Serve static HTML files
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'views/home.html')));
+const authRoutes = require('./routes/auth');
+const productRoutes = require('./routes/products');
+const userRoutes = require('./routes/users');
+const cartRoutes = require('./routes/cart');
 
-app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'views/login.html')));
+app.use('/auth', authRoutes);
+app.use('/products', productRoutes);
+app.use('/users', userRoutes);
+app.use('/cart', cartRoutes);
 
-app.post('/login', (req, res) => {
-  const username = req.body.username;
-  if (username) {
-    req.session.username = username;
-    res.redirect('/secret');
-  } else {
-    res.send('Please enter a username');
-  }
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/index.html'));
 });
 
-app.get('/secret', (req, res) => {
-  if (req.session.username) {
-    res.sendFile(path.join(__dirname, 'views/secret.html'));
-  } else {
-    res.redirect('/login');
-  }
+app.listen(PORT, () => {
+  console.log(`Listening on http://localhost:${PORT}`);
 });
-
-app.post('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.redirect('/');
-  });
-});
-
-app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

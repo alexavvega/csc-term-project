@@ -1,1 +1,18 @@
+# Dependency directories
 node_modules/
+
+# SQLite database
+data/database.sqlite
+
+# Logs
+*.log
+
+# VS Code settings
+.vscode/
+
+.DS_Store
+Thumbs.db
+
+
+*.tmp
+*.bak
