@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Detail - Vintage Games</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="logo">Vintage Games</div>
+    <div class="header-right">
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/index.html">Store</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/login.html">Account</a></li>
+          <li><a href="/cart">Cart 0</a></li>
+        </ul>
+      </nav>
+      <div class="search-box">
+        <input type="text" placeholder="Search..." />
+        <button>GO</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="product-detail-container">
+      <h1>Vintage Games</h1>
+
+      <div class="product-main">
+        <div class="product-image-container">
+          <div class="product-image"></div>
+        </div>
+
+        <div class="product-info">
+          <h2 class="product-title">Loading...</h2>
+          <div class="product-rating">
+            <div class="stars">★★★★★</div>
+            <span class="reviews-count">(5 Reviews)</span>
+          </div>
+          <div class="product-price">$0.00</div>
+          <div class="product-condition">Condition: Good - What's Included</div>
+          <div class="product-availability">In Stock</div>
+
+          <input type="hidden" id="product-id" />
+
+          <div class="product-actions">
+            <button class="action-button add-cart">Add to Cart</button>
+            <button class="action-button add-wishlist">Add to Wishlist</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-tabs">
+        <div class="tab active">Description</div>
+        <div class="tab">Specifications</div>
+        <div class="tab">Reviews (1)</div>
+        <div class="tab">Related Games</div>
+      </div>
+
+      <div class="product-description">
+        <p>Loading description...</p>
+      </div>
+
+      <div class="related-products">
+        <h3>You might also like...</h3>
+        <div class="related-products-grid">
+          <div class="related-product"></div>
+          <div class="related-product"></div>
+          <div class="related-product"></div>
+          <div class="related-product"></div>
+          <div class="related-product"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="social-section">
+        <h3>Where to Find Us</h3>
+        <div class="social-icons">
+          <a href="#" class="social-icon instagram">Instagram</a>
+          <a href="#" class="social-icon facebook">Facebook</a>
+          <a href="#" class="social-icon twitter">Twitter</a>
+          <a href="#" class="social-icon linkedin">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("id");
+
+  if (!productId) {
+    document.querySelector('.product-detail-container').innerHTML = "<h2>Product not found</h2>";
+    return;
+  }
+
+  fetch(`/products/${productId}`)
+    .then(res => res.json())
+    .then(product => {
+      if (product.error) {
+        document.querySelector('.product-detail-container').innerHTML = "<h2>Product not found</h2>";
+        return;
+      }
+
+      document.getElementById('product-id').value = product.id;
+      document.querySelector('.product-title').textContent = product.name;
+      document.querySelector('.product-price').textContent = `$${product.price.toFixed(2)}`;
+      document.querySelector('.product-description p').textContent = product.description;
+      document.querySelector('.product-image').innerHTML = `<img src="${product.image}" alt="${product.name}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`;
+    });
+
+  document.querySelector('.add-cart').addEventListener('click', () => {
+    const productId = parseInt(document.getElementById('product-id').value);
+
+    fetch('/cart/api/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        productId: productId,
+        quantity: 1
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert("Added to cart!");
+      console.log(data.cart);
+    });
+  });
+});
+</script>
+
+</body>
+
+</html>
