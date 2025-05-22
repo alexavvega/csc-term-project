@@ -88,30 +88,7 @@
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
-        
-        .profile-pic-container {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background-color: #ddd;
-            margin-bottom: 20px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .add-pic-text {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        
-        .add-pic-text:hover {
-            color: #666;
-        }
+
         
         .sign-out-btn {
             background-color: #f05555;
@@ -187,9 +164,7 @@
         </div>
         
         <div class="profile-section">
-            <h1 class="profile-title">Profile Picture</h1>
-            <div class="profile-pic-container" id="profilePic"></div>
-            <div class="add-pic-text" id="addPicText">Add Profile Pic</div>
+            <h1 class="profile-title">Hi! </h1> <!--Username of the user should go here-->
             <a href="blank.html"><button class="sign-out-btn">Sign Out</button></a>
         </div>
         
@@ -205,16 +180,8 @@
     </main>
 
     <script>
-        // Add profile picture functionality
-        document.getElementById('addPicText').addEventListener('click', function() {
-            // In a real application, you would trigger a file upload dialog here
-            alert('Profile picture upload functionality would be implemented here.');
-        });
-        
         // Create blank page for links
         document.addEventListener('DOMContentLoaded', function() {
-            // Create a blank HTML file if it doesn't exist
-            // This won't actually create a file in the browser, but simulates the functionality
             console.log('All links will lead to a blank page (blank.html)');
         });
     </script>
