@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart - Vintage Games</title>
+    <link rel="stylesheet" href="/css/cart.css" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">Vintage Games</div>
+        <div class="header-right">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">Browse</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/cart">Cart 0</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Your Shopping Cart</h1>
+
+        <div id="cart-content">
+            <div class="cart-container">
+                <div class="cart-header">
+                    <div>Product</div>
+                    <div>Price</div>
+                    <div>Quantity</div>
+                    <div>Total</div>
+                </div>
+                <!-- Cart items will be inserted here -->
+            </div>
+
+            <div class="summary-details">
+                <!-- Summary will be inserted here -->
+            </div>
+
+            <div class="payment-section" id="payment-section" style="display: none;">
+                <h2 class="section-title">Checkout</h2>
+
+                <h3>Shipping Information</h3>
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" placeholder="John Doe" />
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Street Address</label>
+                    <input type="text" id="address" placeholder="123 Main St" />
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" placeholder="New York" />
+                </div>
+
+                <div class="form-group">
+                    <label for="zip">ZIP Code</label>
+                    <input type="text" id="zip" placeholder="10001" />
+                </div>
+
+                <h3>Payment Method</h3>
+                <div class="payment-options">
+                    <div class="payment-option selected">Credit Card</div>
+                    <div class="payment-option">PayPal</div>
+                    <div class="payment-option">Store Credit</div>
+                </div>
+
+                <div class="credit-card-form">
+                    <div class="form-group">
+                        <label for="cardname">Name on Card</label>
+                        <input type="text" id="cardname" placeholder="John Doe" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardnumber">Card Number</label>
+                        <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456" />
+                    </div>
+
+                    <div class="card-details">
+                        <div class="form-group">
+                            <label for="expiry">Expiration Date</label>
+                            <input type="text" id="expiry" placeholder="MM/YY" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cvc">CVC</label>
+                            <input type="text" id="cvc" placeholder="123" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-row total-row">
+                    <span>Total</span>
+                    <span id="checkout-total">$0.00</span>
+                </div>
+
+                <button class="place-order-btn">Place Order</button>
+            </div>
+
+            <div class="empty-cart" style="display: none;">
+                <h2>Your cart is empty</h2>
+                <p>Looks like you haven't added any games to your cart yet.</p>
+                <a href="/index.html" class="browse-btn">Browse Games</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Vintage Games. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartContainer = document.querySelector('.cart-container');
+            const emptyCart = document.querySelector('.empty-cart');
+            const summary = document.querySelector('.summary-details');
+            const cartContent = document.getElementById('cart-content');
+
+            if (!cartContainer || !emptyCart || !summary || !cartContent) {
+                console.error("Missing expected elements in cart.html.");
+                return;
+            }
+
+            function renderCart(cart) {
+                let subtotal = 0;
+
+                document.querySelectorAll('.cart-item').forEach(item => item.remove());
+
+                if (cart.length === 0) {
+                    cartContainer.style.display = 'none';
+                    emptyCart.style.display = 'block';
+                    return;
+                }
+
+                cartContainer.style.display = 'block';
+                emptyCart.style.display = 'none';
+
+                const itemsHTML = cart.map(item => {
+                    const total = item.price * item.quantity;
+                    subtotal += total;
+
+                    return `
+        <div class="cart-item" data-id="${item.id}">
+          <div class="item-details">
+            <div class="item-image">
+              <img src="${item.image}" alt="${item.name}">
+            </div>
+            <div>
+              <h3>${item.name}</h3>
+            </div>
+          </div>
+          <div>$${item.price.toFixed(2)}</div>
+          <div class="quantity-control">
+            <button class="decrease">-</button>
+            <input type="number" value="${item.quantity}" min="1">
+            <button class="increase">+</button>
+          </div>
+          <div class="item-total">
+            $${total.toFixed(2)}
+            <button class="remove-btn">Remove</button>
+          </div>
+        </div>
+      `;
+                }).join('');
+
+                document.querySelector('.cart-header').insertAdjacentHTML('afterend', itemsHTML);
+                updateSummary(cart);
+                attachEventListeners();
+            }
+
+            function attachEventListeners() {
+                document.querySelectorAll('.increase').forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        const parent = this.closest('.cart-item');
+                        const input = parent.querySelector('input');
+                        input.value = parseInt(input.value) + 1;
+                        updateQuantity(parent);
+                    });
+                });
+
+                document.querySelectorAll('.decrease').forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        const parent = this.closest('.cart-item');
+                        const input = parent.querySelector('input');
+                        if (parseInt(input.value) > 1) {
+                            input.value = parseInt(input.value) - 1;
+                            updateQuantity(parent);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.remove-btn').forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        const parent = this.closest('.cart-item');
+                        const id = parent.getAttribute('data-id');
+
+                        fetch('/cart/api/remove', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ productId: id })
+                        })
+                            .then(res => res.json())
+                            .then(updatedCart => renderCart(updatedCart))
+                            .catch(error => console.error('Error removing item:', error));
+                    });
+                });
+
+                const checkoutBtn = document.getElementById('checkout-btn');
+                if (checkoutBtn) {
+                    checkoutBtn.addEventListener('click', () => {
+                        const paymentSection = document.getElementById('payment-section');
+                        if (paymentSection) {
+                            paymentSection.style.display = 'block';
+                            window.scrollTo({
+                                top: paymentSection.offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                }
+            }
+
+            function updateQuantity(parent) {
+                const id = parent.getAttribute('data-id');
+                const qty = parent.querySelector('input').value;
+
+                fetch('/cart/api/update', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ productId: id, quantity: qty })
+                })
+                    .then(res => res.json())
+                    .then(updatedCart => renderCart(updatedCart))
+                    .catch(error => console.error('Error updating quantity:', error));
+            }
+
+            function updateSummary(cart) {
+                summary.innerHTML = "";
+
+
+                let subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                const shipping = 5;
+                const tax = subtotal * 0.1;
+                const total = subtotal + shipping + tax;
+
+                summary.innerHTML = `
+      <div class="summary-row"><span>Subtotal</span><span>$${subtotal.toFixed(2)}</span></div>
+      <div class="summary-row"><span>Shipping</span><span>$${shipping.toFixed(2)}</span></div>
+      <div class="summary-row"><span>Tax</span><span>$${tax.toFixed(2)}</span></div>
+      <div class="summary-row total-row"><span>Total</span><span>$${total.toFixed(2)}</span></div>
+      <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+    `;
+
+                const checkoutTotal = document.getElementById('checkout-total');
+                if (checkoutTotal) {
+                    checkoutTotal.textContent = `$${total.toFixed(2)}`;
+                }
+            }
+
+            fetch('/cart/api')
+                .then(res => res.json())
+                .then(cart => {
+                    console.log("Cart loaded:", cart);
+                    renderCart(cart);
+                })
+                .catch(err => {
+                    console.error("Cart load error:", err);
+                    cartContent.innerHTML = "<p>Error loading cart. Please try again.</p>";
+                });
+
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
