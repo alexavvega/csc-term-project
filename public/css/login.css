@@ -60,3 +60,43 @@ nav a {
 nav a:hover {
     background-color: #888;
 }
+@media (max-width: 768px) {
+    header, nav ul, .container, .game-grid, .product-main, .profile-content {
+        flex-direction: column !important;
+        align-items: center;
+        text-align: center;
+    }
+
+    nav ul {
+        padding: 0;
+    }
+
+    nav li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .search-box {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .game-card, .related-product {
+        width: 100% !important;
+        margin: 10px 0;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-group, input, button {
+        width: 100% !important;
+    }
+
+    .profile-sidebar, .genres-section {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+}

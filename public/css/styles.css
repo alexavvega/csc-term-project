@@ -556,21 +556,75 @@ footer {
         grid-template-columns: 1fr;
     }
 }
-
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
     .game-card {
+        width: 30%;
+    }
+    
+    .profile-content {
+        flex-direction: column;
+    }
+    
+    .profile-sidebar, .profile-main {
         width: 100%;
     }
     
-    .logo {
-        font-size: 1.8rem;
-    }
-    
-    .profile-picture-container {
-        flex-direction: column;
-    }
-    
-    .product-actions {
+    .product-main {
         flex-direction: column;
     }
 }
+@media (max-width: 768px) {
+    header, .header-right, nav ul, .container, .game-grid, .profile-content {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+    }
+
+    nav li {
+        margin: 10px 5px;
+        display: inline-block;
+    }
+
+    .search-box {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .search-box input {
+        width: 90%;
+        margin-bottom: 10px;
+    }
+
+    .game-card, .related-product {
+        width: 100% !important;
+        margin: 10px 0;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-group input,
+    button {
+        width: 100% !important;
+    }
+
+    .profile-sidebar, .genres-section {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+
+    .product-main {
+        flex-direction: column !important;
+        align-items: center;
+    }
+}
+

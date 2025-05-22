@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Games - Battletoads</title>
+    <style>
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background-color: #4a4a4a;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            background-color: #666;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        .nav-link:hover {
+            background-color: #555;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .product-image {
+            flex-shrink: 0;
+        }
+
+        .game-cover {
+            width: 200px;
+            height: 280px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            object-fit: cover;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .seller {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            color: #ffa500;
+            font-size: 18px;
+        }
+
+        .reviews-count {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .condition {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .stock {
+            color: #22a722;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        .btn-primary:hover {
+            background-color: #bbb;
+        }
+
+        .btn-secondary {
+            background-color: #999;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #888;
+        }
+
+        /* Tabs */
+        .tabs {
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 15px 25px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background-color: white;
+            color: #333;
+            border-bottom: 2px solid #333;
+        }
+
+        .tab-btn:hover {
+            background-color: #e8e8e8;
+        }
+
+        .tab-content {
+            padding: 30px;
+            background-color: white;
+            line-height: 1.6;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .product-title {
+                font-size: 36px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .tab-buttons {
+                flex-wrap: wrap;
+            }
+
+            .tab-btn {
+                flex: 1;
+                min-width: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Vintage Games</div>
+            <nav class="nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">Browse</a></li> <!-- Add route if it exists -->
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/faq">FAQ</a></li> <!-- Add route if it exists -->
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/cart">Cart 0</a></li>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="product-image">
+           <img src="/images/Battletoads_Coverart.png" alt="Battletoads Game Cover" class="game-cover"> <!--This is IMPORTANT Servers as the img render-->
+        </div>
+
+        <div class="product-info">
+            <h1 class="product-title">Battletoads</h1>
+            <div class="seller">Seller: Vintage Games</div>
+
+            <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="reviews-count">(3 Reviews)</span>
+            </div>
+
+            <div class="price">$8.99</div>
+            <div class="condition">Condition: Good</div>
+            <div class="stock">In Stock (3 available)</div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                <button class="btn btn-secondary" onclick="addToWishlist()">Add to Wishlist</button>
+            </div>
+
+            <div class="tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="showTab('description')">Description</button>
+                    <button class="tab-btn" onclick="showTab('specifications')">Specifications</button>
+                    <button class="tab-btn" onclick="showTab('reviews')">Reviews (3)</button>
+                    <button class="tab-btn" onclick="showTab('related')">Related Games</button>
+                </div>
+
+                <div class="tab-content">
+                    <div id="description" class="tab-panel active">
+                        <p>Rare created the iconic beat-'em-up video game series Battletoads, which made its debut in
+                            1991. Rash, Zitz, and Pimple, the three anthropomorphic toads who star in it, are well-known
+                            for their extreme demeanor, outrageous fighting techniques (such as transforming their fists
+                            into anvils), and humorous yet action-packed fighting style. When the original game was
+                            published for the NES, it gained notoriety for its extreme difficulty, particularly the
+                            Turbo Tunnel level, which left many players permanently traumatized. Battletoads has seen a
+                            number of reboots and sequels over the years, including a 2020 Xbox and PC rebirth with a
+                            cartoonish aesthetic and a more contemporary approach to humor and gameplay.</p>
+                    </div>
+
+                    <div id="specifications" class="tab-panel">
+                        <p><strong>Platform:</strong> Vintage Console</p>
+                        <p><strong>Genre:</strong> Action/Arcade</p>
+                        <p><strong>Release Year:</strong> 1980s</p>
+                        <p><strong>Publisher:</strong> Retro Games Inc.</p>
+                        <p><strong>Condition:</strong> Good - Minor wear on cartridge</p>
+                        <p><strong>Includes:</strong> Game cartridge, original box, instruction manual</p>
+                    </div>
+
+                    <div id="reviews" class="tab-panel">
+                        <div style="margin-bottom: 20px;">
+                            <strong>★★★★★ Amazing classic!</strong><br>
+                            <em>by RetroGamer123</em><br>
+                            This game brings back so many memories. Great condition and fast shipping!
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <strong>★★★★☆ Good but expensive</strong><br>
+                            <em>by VintageCollector</em><br>
+                            Quality is as described, but the price is a bit steep for the condition.
+                        </div>
+                        <div>
+                            <strong>★★★★★ Perfect addition to collection</strong><br>
+                            <em>by GameMaster</em><br>
+                            Exactly what I was looking for. Seller was very professional.
+                        </div>
+                    </div>
+
+                    <div id="related" class="tab-panel">
+                        <p><strong>You might also like:</strong></p>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>Space Commander - $45.99</li>
+                            <li>Retro Fighter - $52.50</li>
+                            <li>Cosmic Adventure - $38.75</li>
+                            <li>Pixel Quest - $41.20</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab panels
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            // Remove active class from all tab buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected panel and activate button
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Cart functionality
+        function addToCart() {
+            alert('Battletoads has been added to your cart!');
+            // In a real application, this would make an API call
+            console.log('Adding to cart: Battletoads - $8.99');
+        }
+
+        // Wishlist functionality
+        function addToWishlist() {
+            alert('Battletoads has been added to your wishlist!');
+            // In a real application, this would make an API call
+            console.log('Adding to wishlist: Battletoads');
+        }
+
+        // Navigation button functionality
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const page = this.textContent.toLowerCase();
+                alert(`Navigating to ${this.textContent} page`);
+                console.log(`Navigation: ${page}`);
+            });
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function () {
+            // Animate game cover on hover
+            const gameCover = document.querySelector('.game-cover');
+            gameCover.addEventListener('mouseenter', function () {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+
+            gameCover.addEventListener('mouseleave', function () {
+                this.style.transform = 'scale(1)';
+            });
+
+            // Add loading effect for buttons
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const originalText = this.textContent;
+                    this.textContent = 'Loading...';
+                    this.disabled = true;
+
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.disabled = false;
+                    }, 1500);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
