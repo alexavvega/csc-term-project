@@ -139,6 +139,7 @@
             display: flex;
             gap: 15px;
             margin-bottom: 40px;
+            align-items: center;
         }
 
         .btn {
@@ -166,6 +167,19 @@
 
         .btn-secondary:hover {
             background-color: #888;
+        }
+
+        .quantity-display {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            min-width: 120px;
+            text-align: center;
+            border: 2px solid #45a049;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         /* Tabs */
@@ -284,6 +298,9 @@
             <div class="action-buttons">
                 <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
                 <button class="btn btn-secondary" onclick="addToWishlist()">Add to Wishlist</button>
+                <div class="quantity-display" id="quantityDisplay">
+                    Battletoads in Cart: <span id="cartCount">0</span>
+                </div>
             </div>
 
             <div class="tabs">
@@ -348,6 +365,9 @@
     </main>
 
     <script>
+        // Cart counter variable
+        let battletoadsInCart = 0;
+
         // Tab functionality
         function showTab(tabName) {
             // Hide all tab panels
@@ -365,9 +385,15 @@
 
         // Cart functionality
         function addToCart() {
-            alert('Battletoads has been added to your cart!');
+            // Increment the counter
+            battletoadsInCart++;
+            
+            // Update the display
+            document.getElementById('cartCount').textContent = battletoadsInCart;
+            
+            alert(`Battletoads has been added to your cart! (${battletoadsInCart} total)`);
             // In a real application, this would make an API call
-            console.log('Adding to cart: Battletoads - $8.99');
+            console.log(`Adding to cart: Battletoads - $8.99. Total in cart: ${battletoadsInCart}`);
         }
 
         // Wishlist functionality
@@ -399,7 +425,7 @@
                 this.style.transform = 'scale(1)';
             });
 
-            // Add loading effect for buttons
+            // Add loading effect for buttons (excluding the quantity display)
             document.querySelectorAll('.btn').forEach(btn => {
                 btn.addEventListener('click', function () {
                     const originalText = this.textContent;

@@ -284,6 +284,41 @@
                 });
             });
         });
+
+
+        document.querySelector('.place-order-btn').addEventListener('click', () => {
+    const orderData = {
+        fullname: document.getElementById('fullname').value,
+        address: document.getElementById('address').value,
+        city: document.getElementById('city').value,
+        zip: document.getElementById('zip').value,
+        cardname: document.getElementById('cardname').value,
+        cardnumber: document.getElementById('cardnumber').value,
+        expiry: document.getElementById('expiry').value,
+        cvc: document.getElementById('cvc').value
+    };
+
+    fetch('/cart/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert("Order placed successfully!");
+            window.location.href = "/";
+        } else {
+            alert("Checkout failed.");
+        }
+    })
+    .catch(err => {
+        console.error("Checkout error:", err);
+        alert("Error placing order.");
+    });
+});
+
+
     </script>
 </body>
 

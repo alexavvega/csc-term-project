@@ -22,8 +22,11 @@
                 </ul>
             </nav>
             <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <button>GO</button>
+               <form action="/search" method="GET" class="search-box">
+  <input type="text" name="q" placeholder="Search..." required />
+  <button type="submit">GO</button>
+</form>
+</div>
             </div>
         </div>
     </header>

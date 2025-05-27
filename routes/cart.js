@@ -52,6 +52,28 @@ router.post('/api/update', (req, res) => {
     res.json(req.session.cart);
 });
 
+
+router.post('/api/checkout', (req, res) => {
+    const { fullname, address, city, zip, cardname, cardnumber, expiry, cvc } = req.body;
+
+    if (!req.session.cart || req.session.cart.length === 0) {
+        return res.status(400).json({ error: "Cart is empty." });
+    }
+
+    // Log order for now (can be extended to save to DB)
+    console.log("ORDER PLACED:");
+    console.log("Customer:", fullname, address, city, zip);
+    console.log("Payment:", cardname, cardnumber, expiry, cvc);
+    console.log("Cart:", req.session.cart);
+
+    // Clear cart
+    req.session.cart = [];
+
+    res.json({ success: true });
+});
+
+
+
 router.post('/api/remove', (req, res) => {
     const { productId } = req.body;
     if (!req.session.cart) return res.json([]);
