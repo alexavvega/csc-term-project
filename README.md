@@ -1,4 +1,5 @@
-#CSC Term Project – Vintage Video Game E-Commerce Site
+## CSC Term Project – Vintage Video Game E-Commerce Site
+
 Team Members: Alexa, Hensley, Jayden
 Project: A vintage video game e-commerce website that allows users to browse, purchase, and learn about older video games in a safe and secure online environment.
 
