@@ -10,24 +10,27 @@
 
 <body>
   <header>
-    <div class="logo">Vintage Games</div>
-    <div class="header-right">
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/">Browse</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/faq">FAQ</a></li>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/cart">Cart 0</a></li>
-        </ul>
-      </nav>
-      <div class="search-box">
-        <input type="text" placeholder="Search..." />
-        <button>GO</button>
-      </div>
-    </div>
-  </header>
+        <div class="logo">Vintage Games</div>
+        <div class="header-right">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/cart">Cart</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+               <form action="/search" method="GET" class="search-box">
+  <input type="text" name="q" placeholder="Search..." required />
+  <button type="submit">GO</button>
+</form>
+</div>
+            </div>
+        </div>
+    </header>
 
   <div class="container">
     <div class="product-detail-container">

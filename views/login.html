@@ -1,29 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Login - Vintage Games</title>
-  <link rel="stylesheet" href="/css/login.css">
-</head>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        min-height: 100vh;
+    }
+
+    /* Header Styling */
+    header {
+        background-color: #333;
+        color: white;
+        padding: 15px 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    header .logo {
+        font-size: 24px;
+        font-weight: bold;
+        padding-left: 20px;
+        display: inline-block;
+    }
+
+    .header-right {
+        float: right;
+        padding-right: 20px;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+        color: #ccc;
+    }
+
+    /* Clear floats */
+    header::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Main Container */
+    .container {
+        max-width: 400px;
+        margin: 60px auto;
+        padding: 40px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    /* Welcome Message */
+    .container::before {
+        content: "Good to see you again!!";
+        display: block;
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: normal;
+    }
+
+    /* Main Heading */
+    .container h1 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+
+    /* Form Styling */
+    form {
+        text-align: left;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 16px;
+        color: #333;
+        font-weight: normal;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #f8f8f8;
+        transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #999;
+        background-color: white;
+    }
+
+    /* Sign In Button */
+    button[type="submit"] {
+        width: 100%;
+        padding: 15px;
+        background-color: #c4d82a;
+        color: #333;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 10px;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #b5c625;
+    }
+
+    button[type="submit"]:active {
+        background-color: #a6b522;
+    }
+
+    /* Register Link */
+    .container p {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .container p a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    .container p a:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .header-right {
+            float: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        header .logo {
+            text-align: center;
+            display: block;
+            padding: 0;
+        }
+        
+        nav ul {
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .container {
+            margin: 30px 20px;
+            padding: 30px 20px;
+        }
+    }</style>
+</head>
 <body>
 
-  <header>
-    <div class="logo">Vintage Games</div>
-    <div class="header-right">
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/">Browse</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/faq">FAQ</a></li>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/cart">Cart 0</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <header>
+        <div class="logo">Vintage Games</div>
+        <div class="header-right">
+            <nav>
+                <ul>
+                      <li><a href="/">Home</a></li>
+                    <li><a href="/">Browse</a></li> <!-- Add route if it exists -->
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/faq">FAQ</a></li> <!-- Add route if it exists -->
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/cart">Cart 0</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
   <div class="container">
     <h1>Login</h1>
@@ -41,5 +222,4 @@
     <p>Don't have an account? <a href="/register">Register here</a></p>
   </div>
 </body>
-
 </html>

@@ -50,6 +50,15 @@ app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, 'views/register.html'));
 });
 
+app.get('/profile', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/profile.html'));
+});
+
+app.get('/faq', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/faq.html'));
+});
+
+
 // ✅ Start the server
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
