@@ -59,6 +59,41 @@ app.get('/faq', (req, res) => {
 });
 
 
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('./data/database.sqlite');
+
+app.get('/search', (req, res) => {
+  const q = req.query.q;
+  if (!q) return res.send("<p>No search query provided.</p><a href='/'>Back</a>");
+
+  const keyword = `%${q.toLowerCase()}%`;
+
+  db.all(
+    "SELECT * FROM products WHERE LOWER(name) LIKE ?",
+    [keyword],
+    (err, rows) => {
+      if (err) return res.status(500).send("Database error.");
+      if (!rows.length) return res.send(`<p>No results for "${q}"</p><a href="/">Back</a>`);
+
+      // Send a very simple result page for now
+      let html = `<h1>Search Results for "${q}"</h1><div>`;
+      rows.forEach(p => {
+        html += `
+          <div style="margin-bottom:20px;">
+            <h2>${p.name}</h2>
+            <p>Price: $${p.price}</p>
+            <a href="/product.html?id=${p.id}">View</a>
+          </div>
+        `;
+      });
+      html += `</div><a href="/">Back</a>`;
+      res.send(html);
+    }
+  );
+});
+
+
+
 // ✅ Start the server
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
